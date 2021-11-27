@@ -9,10 +9,11 @@ import Cities from "../Cities/Cities";
 import City from '../City/City';
 import DateTime from '../../components/CurrentDate/DateTime';
 import WeatherScroll from '../../components/CurrentDate/WeatherScroll';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const API_KEY ='8fbf7d93eaa27eae0f86b576e3a148d2';
 const img = require('../../assets/playa.png');
 
-const Home = ({navigation}) => {
+const Home = ({navigation}) => {  
   const [dataDateTime, setDataDateTime] = useState({});
 
   useEffect(() => {
@@ -38,6 +39,12 @@ const Home = ({navigation}) => {
     
   }
 
+  const deleteDBCities = () => {
+    AsyncStorage.removeItem('dbCity');
+    AsyncStorage.removeItem('databaseCities');
+    AsyncStorage.removeItem('selectCityToList');
+  }
+
   return (
     <View style={Styles.container}>
         <ImageBackground source={img} style={Styles.imageHome}>
@@ -51,6 +58,10 @@ const Home = ({navigation}) => {
             <TouchableOpacity style={StylesButton.btnCities} >
                 <Icon name="home-city" size={30} color="#E5097F" 
                 onPress={() => navigation.navigate(Cities)}/>   
+            </TouchableOpacity>            
+            <TouchableOpacity style={StylesButton.btnDeleteStorage} >
+                <Icon name="delete-empty" size={30} color="#E5097F" 
+                onPress={deleteDBCities()}/>   
             </TouchableOpacity>
           </View>                               
         </ImageBackground>

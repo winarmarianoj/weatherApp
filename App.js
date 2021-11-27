@@ -43,14 +43,13 @@ export default function App() {
         }).start(() => setAnimated(true));
       });      
   }, [])
-  
+  //<Animated.Image style={[Styles.imageApp, {top: position}]} source={photoClime}/>
   if(!animated)
   return (
     <>
       <StatusBar animated={true} backgroundColor="#142950" barStyle="light-content" />
-      <View style={Styles.containerHome}>
-        <Animated.Image style={[Styles.imageApp, {top: position}]} source={photoClime}/>
-        <Animated.Text style={[Styles.textApp, {opacity: show, transform: [{scale: font}]}]}>Welcome</Animated.Text>
+      <View style={Styles.containerHome}>        
+        <Animated.Text style={[Styles.textApp, {opacity: show, transform: [{scale: font}]}]}>Welcome to WeatherApp</Animated.Text>
       </View>
     </>
   );

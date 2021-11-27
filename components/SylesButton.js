@@ -68,7 +68,7 @@ const StylesButton = StyleSheet.create({
         height: 50,
         borderRadius: 70,
         bottom: 5,
-        right: 70,},
+        right: 80,},
     btnHome: {
         shadowColor: "#000",
         shadowOffset: {

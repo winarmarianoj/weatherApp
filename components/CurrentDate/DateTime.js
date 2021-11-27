@@ -35,8 +35,7 @@ const DateTime = ({current, lat, lon, timezone}) => {
         
         }, 1000);
     }, [])
-
-    if(timezone)
+    
     return (
         <View style={styles.container}>  
            <View>                
@@ -57,11 +56,6 @@ const DateTime = ({current, lat, lon, timezone}) => {
                     <Text style={styles.latlong}>{lat}N {lon}E</Text>
                 </View>
            </View>           
-        </View>
-    );
-    return (
-        <View>
-            <Text style={styles.textApp}>Se encuentra vacía la Lista de Ciudades. Vuelva a Home y cargue nuevas ciudades.</Text>
         </View>
     )
 }

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput, ImageBackground, Button} from 'react-native';
+import {View, Text, TextInput, ImageBackground, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
@@ -27,16 +27,12 @@ const City = ({navigation}) => {
     const handlerSubmit = async values => {
         try {            
             setTown(values);
-            await AsyncStorage.setItem("dbCity", JSON.stringify(town));
+            await AsyncStorage.setItem('dbCity', JSON.stringify(town));
             console.log(town);
         }catch (error) {
             AsyncStorage.removeItem('dbCity');
             console.log(error);
         }
-    }
-
-    const deleteStorage = () => {
-        AsyncStorage.removeItem('dbCity');
     }
 
     return (
@@ -61,9 +57,10 @@ const City = ({navigation}) => {
                             value={values.city}/>
                             {errors.city && touched.city ? <Text style={Styles.error}>(errors.city)</Text> : null}
                         </View>                        
-                        <View style={StylesButton.btnAddCity}>
-                            <Button color="#142950" onPress={handleSubmit} title='ADD CITY'/>                                                       
-                        </View>                           
+                        <TouchableOpacity style={StylesButton.btnAddCity}
+                            activeOpacity={0.7} onPress={handleSubmit}  >                    
+                            <Text style={StylesButton.btnTextAddCity}>ADD CITY</Text>
+                        </TouchableOpacity>                           
                         </>
                     )}
                 </Formik>                                

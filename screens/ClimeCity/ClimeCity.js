@@ -21,27 +21,43 @@ const ClimeCity = ({navigation}) => {
         await AsyncStorage.getItem('dbCity').then(data => {
           listita = JSON.parse(data);
         });
-          
-        fetchDataCityApi(listita.country, listita.city);
+        
+        try {
+          if(listita){
+            fetchDataCityApi(listita.country, listita.city);
+          }
+        } catch (error) {
+          <NotCity message={'La ciudad no existe o es incorrecta.'}/>
+        }          
+        
       })();
     }, [])
 
     const fetchDataCityApi = (country, city) => {
-      if(country && city) {
-        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}`).then(res => res.json()).then(data => {
-          console.log(data);
-          fetchDataCityCoord(data.coord.lon, data.coord.lat);           
-        })        
-      }      
+      try {
+        if(country && city) {
+          fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}`).then(res => res.json()).then(data => {
+            console.log(data);
+            fetchDataCityCoord(data.coord.lon, data.coord.lat);           
+          })        
+        }        
+      } catch (error) {
+        <NotCity message={'No se ha encontrado ciudad y pais.'}/>
+      }            
     }
     
     const fetchDataCityCoord = (lon, lat) => {
-      if(lon && lat) {
-        fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely&units=metric&appid=${API_KEY}`).then(res => res.json()).then(data => {
-          console.log(data);
-          setDataCityClime(data);
-        })
+      try {
+        if(lon && lat) {
+          fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely&units=metric&appid=${API_KEY}`).then(res => res.json()).then(data => {
+            console.log(data);
+            setDataCityClime(data);
+          })
+        }  
+      } catch (error) {
+        <NotCity message={'No se ha encontrado latitud y longitud.'}/>
       }
+      AsyncStorage.removeItem('dbCity');
     }
 
     return (
@@ -56,6 +72,20 @@ const ClimeCity = ({navigation}) => {
             </ImageBackground>
         </View>
     )
+}
+
+const NotCity = ({message}) => {
+  return(
+    <View style={Styles.container}>
+        <ImageBackground source={img} style={Styles.imageHome}>
+          <View>
+              <View>
+                <Text style={Styles.textApp}>{message}</Text>
+              </View>
+          </View>
+        </ImageBackground>
+    </View>
+  )  
 }
 
 export default ClimeCity;

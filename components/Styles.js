@@ -45,6 +45,7 @@ const Styles = StyleSheet.create({
         paddingLeft: 15,
         paddingRight: 15,
         borderRadius: 40,
+        marginTop: 30
     },
     imageHome: {
         flex:1, 
@@ -58,8 +59,10 @@ const Styles = StyleSheet.create({
     imageListCities: {
         flex:1, 
         resizeMode:"cover", 
-        justifyContent:"center",
         opacity: 0.8
+    },
+    rowListCities: {
+        marginTop: 10,
     },
 });
 

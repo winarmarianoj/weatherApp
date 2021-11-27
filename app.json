@@ -26,10 +26,14 @@
       },
       "package": "in.winarmarianoj.weatherApp",
       "versionCode": 1,
-      "permissions": ["LOCATION"]
+      "permissions": [
+        "LOCATION"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "Weather App hecha con React Native, mi primer App para celular . Clima de las Ciudades a traves de la API Weather.",
+    "githubUrl": "https://github.com/winarmarianoj/weatherApp"
   }
 }

@@ -51,10 +51,6 @@ const Cities = ({navigation}) => {
         }
     }
 
-    const deleteStorage = () => {
-        AsyncStorage.removeItem('databaseCities');
-    }
-
     return (
         <View style={Styles.containerTakeDataCity}> 
             <ImageBackground source={img} style={Styles.imageCities}>           
@@ -100,14 +96,3 @@ const Cities = ({navigation}) => {
 };
 
 export default Cities;
-
-/*
-<TouchableOpacity style={Styles.btnAddCities}
-                                activeOpacity={0.7} onPress={() => navigation.navigate(ClimeListCity)} >                    
-                    <Text style={Styles.btnTextCities}>CLIME CITY</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={Styles.btnListCities}
-                                activeOpacity={0.7}  onPress={() => navigation.navigate(ListCities)} >
-                    <Text style={Styles.btnTextCities}>SEE LIST CITIES</Text>
-                </TouchableOpacity>   
-*/
