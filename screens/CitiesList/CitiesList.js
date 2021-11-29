@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, ImageBackground, View, Alert, TouchableOpacity } from "react-native";
+import { Button, ImageBackground, View} from "react-native";
 import { ListItem, Avatar } from "react-native-elements";
 import { ScrollView } from "react-native-gesture-handler";
 import firebase from '../../connection/firebase';
@@ -15,7 +15,6 @@ const CitiesList = (props) => {
     firebase.db.collection("dbCity").onSnapshot((querySnapshot) => {
       const cities = [];
       querySnapshot.docs.forEach((doc) => {
-        console.log(doc)
         const { id, country, city } = doc.data();
         cities.push({
           id: doc.id,
@@ -24,7 +23,6 @@ const CitiesList = (props) => {
         });
       });
       setTowns(cities);
-      console.log(cities)
     });
   }, []);
 

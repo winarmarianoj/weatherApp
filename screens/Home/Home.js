@@ -9,7 +9,6 @@ import Cities from "../CreateCities/CreateCities";
 import City from '../City/City';
 import DateTime from '../../components/CurrentDate/DateTime';
 import WeatherScroll from '../../components/CurrentDate/WeatherScroll';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 const API_KEY ='8fbf7d93eaa27eae0f86b576e3a148d2';
 const img = require('../../assets/playa.png');
 
@@ -31,18 +30,10 @@ const Home = ({navigation}) => {
 
   const fetchDataFromApi = (latitude, longitude) => {
     if(latitude && longitude) {
-      fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,minutely&units=metric&appid=${API_KEY}`).then(res => res.json()).then(data => {
-        console.log(data);
+      fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,minutely&units=metric&appid=${API_KEY}`).then(res => res.json()).then(data => {        
         setDataDateTime(data);
       })
-    }
-    
-  }
-
-  const deleteDBCities = () => {
-    AsyncStorage.removeItem('dbCity');
-    AsyncStorage.removeItem('databaseCities');
-    AsyncStorage.removeItem('selectCityToList');
+    }    
   }
 
   return (

@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, ImageBackground, TouchableOpacity, Alert} from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import {View, ImageBackground, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const API_KEY ='8fbf7d93eaa27eae0f86b576e3a148d2';
@@ -24,7 +23,6 @@ const ClimeListCity = (props) => {
     const [dataCityClime, setDataCityClime] = useState({});
     const [town, setTown] = useState(initialTown);    
     const [loading, setLoading] = useState(true);
-    let listita = [];
 
     const getTownById = async (id) => {    
       const dbRef = firebase.db.collection("dbCity").doc(id);
@@ -41,28 +39,10 @@ const ClimeListCity = (props) => {
       getTownById(props.route.params.townId); 
    }, []);
 
-    useEffect(() => {
-      (async () => {
-        await AsyncStorage.getItem('selectCityToList').then(data => {
-          listita = JSON.parse(data);
-        });
-        
-        try {
-          if(listita){
-            fetchDataCityApi(listita.country, listita.city);
-          }
-        } catch (error) {
-          <EmptyList message={'La ciudad no existe o es incorrecta.'}/>
-        }          
-        
-      })();
-    }, [])
-
     const fetchDataCityApi = (country, city) => {
       try {
         if(country && city) {
           fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}`).then(res => res.json()).then(data => {
-            console.log(data);
             fetchDataCityCoord(data.coord.lon, data.coord.lat);           
           })        
         }        
@@ -75,7 +55,6 @@ const ClimeListCity = (props) => {
       try {
         if(lon && lat) {
           fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely&units=metric&appid=${API_KEY}`).then(res => res.json()).then(data => {
-            console.log(data);
             setDataCityClime(data);
           })
         }

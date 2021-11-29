@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { StatusBar } from 'expo-status-bar';
-import {View, Animated, StyleSheet} from 'react-native';
+import {View, Animated} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
@@ -67,6 +67,5 @@ export default function App() {
       </Stack.Navigator>
     </NavigationContainer>
   </GestureHandlerRootView>
-  )
-    
+  )    
 };

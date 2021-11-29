@@ -33,7 +33,7 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": "Weather App hecha con React Native, mi primer App para celular . Clima de las Ciudades a traves de la API Weather.",
+    "description": "Weather App hecha con React Native. Clima de las Ciudades a traves de la API Weather Map, con Firebase como base de datos.",
     "githubUrl": "https://github.com/winarmarianoj/weatherApp"
   }
 }

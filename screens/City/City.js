@@ -27,11 +27,9 @@ const City = ({navigation}) => {
     const handlerSubmit = async values => {
         try {            
             setTown(values);
-            await AsyncStorage.setItem('dbCity', JSON.stringify(town));
-            console.log(town);
+            await AsyncStorage.setItem('dbSimpleCity', JSON.stringify(town));
         }catch (error) {
-            AsyncStorage.removeItem('dbCity');
-            console.log(error);
+            AsyncStorage.removeItem('dbSimpleCity');
         }        
     }
 

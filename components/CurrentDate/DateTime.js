@@ -63,7 +63,6 @@ const DateTime = ({current, lat, lon, timezone}) => {
 const styles = StyleSheet.create({
     container: {
         flex:1.5,
-        //flexDirection:"row",
         justifyContent:'space-between',
         padding: 20
     },

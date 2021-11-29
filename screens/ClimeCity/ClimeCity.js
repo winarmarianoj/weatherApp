@@ -18,7 +18,7 @@ const ClimeCity = ({navigation}) => {
 
     useEffect(() => {
       (async () => {
-        await AsyncStorage.getItem('dbCity').then(data => {
+        await AsyncStorage.getItem('dbSimpleCity').then(data => {
           listita = JSON.parse(data);
         });
         
@@ -37,7 +37,6 @@ const ClimeCity = ({navigation}) => {
       try {
         if(country && city) {
           fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}`).then(res => res.json()).then(data => {
-            console.log(data);
             fetchDataCityCoord(data.coord.lon, data.coord.lat);           
           })        
         }        
@@ -50,14 +49,13 @@ const ClimeCity = ({navigation}) => {
       try {
         if(lon && lat) {
           fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly,minutely&units=metric&appid=${API_KEY}`).then(res => res.json()).then(data => {
-            console.log(data);
             setDataCityClime(data);
           })
         }  
       } catch (error) {
         <NotCity message={'No se ha encontrado latitud y longitud.'}/>
       }
-      AsyncStorage.removeItem('dbCity');
+      AsyncStorage.removeItem('dbSimpleCity');
     }
 
     return (
