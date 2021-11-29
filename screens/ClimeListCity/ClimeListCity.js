@@ -12,9 +12,34 @@ import DateTime from '../../components/CurrentDate/DateTime';
 import WeatherScroll from '../../components/CurrentDate/WeatherScroll';
 import Home from '../Home/Home';
 
-const ClimeListCity = ({navigation}) => {
+import firebase from '../../connection/firebase';
+
+const ClimeListCity = (props) => {
+    const initialTown = {
+      id: "",
+      country: "",
+      city: "",
+    };
+
     const [dataCityClime, setDataCityClime] = useState({});
+    const [town, setTown] = useState(initialTown);    
+    const [loading, setLoading] = useState(true);
     let listita = [];
+
+    const getTownById = async (id) => {    
+      const dbRef = firebase.db.collection("dbCity").doc(id);
+      const doc = await dbRef.get();
+      const town = doc.data();
+      setTown({ ...town, id: doc.id });
+      setLoading(false);    
+      if(town){
+        fetchDataCityApi(town.country, town.city);
+      }
+    };
+
+    useEffect(() => {  
+      getTownById(props.route.params.townId); 
+   }, []);
 
     useEffect(() => {
       (async () => {
@@ -57,7 +82,6 @@ const ClimeListCity = ({navigation}) => {
       } catch (error) {
         <EmptyList message={'No se ha encontrado la latitud y longitud de la ciudad seleccionada.'}/>
       }
-      AsyncStorage.removeItem('selectCityToList');
     }
 
     return (
@@ -68,7 +92,7 @@ const ClimeListCity = ({navigation}) => {
               <View>
                 <TouchableOpacity style={StylesButton.btnCity} >
                     <Icon name="home" size={30} color="#E5097F" 
-                    onPress={() => navigation.navigate(Home)}/>   
+                    onPress={() => props.navigation.navigate(Home)}/>   
                 </TouchableOpacity>
               </View>
             </ImageBackground>

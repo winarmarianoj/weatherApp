@@ -22,7 +22,7 @@ const CitiesSchema = Yup.object().shape({
   });
 
 const City = ({navigation}) => {
-    const [town, setTown] = useState({});
+    const [town, setTown] = useState(CitiesSchema);
 
     const handlerSubmit = async values => {
         try {            
@@ -32,7 +32,7 @@ const City = ({navigation}) => {
         }catch (error) {
             AsyncStorage.removeItem('dbCity');
             console.log(error);
-        }
+        }        
     }
 
     return (

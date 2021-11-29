@@ -26,7 +26,7 @@ const StylesButton = StyleSheet.create({
         bottom: 5,
         right: 10,
     },
-    btnText: {textAlign: 'center', color: '#ADFF2F', marginLeft: 20, fontSize: 25},
+    btnText: {textAlign: 'center', color: '#ADFF2F', marginLeft: 20, fontSize: 40},
     btnTextCities: {textAlign: 'center', color: '#ADFF2F', fontSize: 15},
     btnTextAddCity: {textAlign: 'center', color: '#ADFF2F', fontSize: 25},    
     btnAddCity: {textAlign: 'center', color: '#ADFF2F', fontSize: 25, left: 100,
@@ -126,8 +126,9 @@ const StylesButton = StyleSheet.create({
         width: 50,
         height: 50,
         borderRadius: 70,
-        bottom: 5,
-        right: 150,
+        marginBottom: 1,
+        right: 5,
+
     },
 })
 

@@ -5,7 +5,7 @@ import Styles from '../../components/Styles';
 import StylesButton from '../../components/SylesButton';
 import * as Location from 'expo-location';
 
-import Cities from "../Cities/Cities";
+import Cities from "../CreateCities/CreateCities";
 import City from '../City/City';
 import DateTime from '../../components/CurrentDate/DateTime';
 import WeatherScroll from '../../components/CurrentDate/WeatherScroll';
@@ -58,11 +58,7 @@ const Home = ({navigation}) => {
             <TouchableOpacity style={StylesButton.btnCities} >
                 <Icon name="home-city" size={30} color="#E5097F" 
                 onPress={() => navigation.navigate(Cities)}/>   
-            </TouchableOpacity>            
-            <TouchableOpacity style={StylesButton.btnDeleteStorage} >
-                <Icon name="delete-empty" size={30} color="#E5097F" 
-                onPress={deleteDBCities()}/>   
-            </TouchableOpacity>
+            </TouchableOpacity>                        
           </View>                               
         </ImageBackground>
     </View>
